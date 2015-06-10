@@ -1,0 +1,2 @@
+image-cache/*
+!image-cache/.gitkeep
