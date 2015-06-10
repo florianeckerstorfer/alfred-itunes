@@ -46,7 +46,37 @@
 				<string></string>
 			</dict>
 		</array>
+		<key>98A9D17F-9F86-452D-B49D-6A92F0C5FF01</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>120A76FB-81E1-45EE-A498-4E5FFA65724C</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
 		<key>B819A2F5-0143-49C9-B9EC-09BA2D686343</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>CC66E8B3-D27A-4399-881C-2386B5B1DDD2</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>D698F2F4-5478-4A04-929F-F631AA46054C</string>
+				<key>modifiers</key>
+				<integer>1048576</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>E826A599-C5DA-4BC3-8B9A-F94A14655454</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
@@ -176,6 +206,45 @@ require_once 'search.php';</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>escaping</key>
+				<integer>100</integer>
+				<key>keyword</key>
+				<string>itunes</string>
+				<key>queuedelaycustom</key>
+				<integer>1</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>2</integer>
+				<key>queuemode</key>
+				<integer>2</integer>
+				<key>runningsubtext</key>
+				<string>Retrieving search suggestions ...</string>
+				<key>script</key>
+				<string>$query  = '{query}';
+$entity = 'musicTrack';
+require_once 'search.php';</string>
+				<key>subtext</key>
+				<string>Search iTunes Store for Tracks with Suggestions</string>
+				<key>title</key>
+				<string>Search iTunes Store for Tracks</string>
+				<key>type</key>
+				<integer>1</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>E826A599-C5DA-4BC3-8B9A-F94A14655454</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>plusspaces</key>
 				<false/>
 				<key>url</key>
@@ -283,20 +352,68 @@ require_once 'search.php';</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>file_put_contents('affiliate-token.txt', trim('{query}'));</string>
+				<key>type</key>
+				<integer>1</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>120A76FB-81E1-45EE-A498-4E5FFA65724C</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>itunes_set_affiliate</string>
+				<key>text</key>
+				<string>Set your affiliate token for iTunes and App Store Search</string>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>98A9D17F-9F86-452D-B49D-6A92F0C5FF01</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
 	</array>
 	<key>readme</key>
 	<string></string>
 	<key>uidata</key>
 	<dict>
+		<key>120A76FB-81E1-45EE-A498-4E5FFA65724C</key>
+		<dict>
+			<key>ypos</key>
+			<real>590</real>
+		</dict>
 		<key>33CBB0ED-6447-468B-99D6-F799C355406B</key>
 		<dict>
 			<key>ypos</key>
-			<real>240</real>
+			<real>350</real>
 		</dict>
 		<key>53D2CEFC-201F-470D-94C1-D7693DC4B428</key>
 		<dict>
 			<key>ypos</key>
-			<real>350</real>
+			<real>460</real>
+		</dict>
+		<key>98A9D17F-9F86-452D-B49D-6A92F0C5FF01</key>
+		<dict>
+			<key>ypos</key>
+			<real>590</real>
 		</dict>
 		<key>B819A2F5-0143-49C9-B9EC-09BA2D686343</key>
 		<dict>
@@ -306,12 +423,17 @@ require_once 'search.php';</string>
 		<key>CC66E8B3-D27A-4399-881C-2386B5B1DDD2</key>
 		<dict>
 			<key>ypos</key>
-			<real>190</real>
+			<real>240</real>
 		</dict>
 		<key>D698F2F4-5478-4A04-929F-F631AA46054C</key>
 		<dict>
 			<key>ypos</key>
-			<real>190</real>
+			<real>240</real>
+		</dict>
+		<key>E826A599-C5DA-4BC3-8B9A-F94A14655454</key>
+		<dict>
+			<key>ypos</key>
+			<real>240</real>
 		</dict>
 		<key>F5C19792-DEB5-42A2-8B24-53F7EEF44277</key>
 		<dict>

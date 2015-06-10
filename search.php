@@ -18,7 +18,8 @@ $urls = [
     'album' => 'collectionViewUrl',
     'musicArtist' => 'artistLinkUrl',
     'software' => 'trackViewUrl',
-    'macSoftware' => 'trackViewUrl'
+    'macSoftware' => 'trackViewUrl',
+    'musicTrack' => 'trackViewUrl'
 ];
 
 foreach($json['results'] as $result) {
@@ -40,7 +41,7 @@ foreach($json['results'] as $result) {
 
 $results = $wf->results();
 if (count($results) === 0) {
-    $wf->result('itunes', $orig, 'No Suggestions', 'No search suggestions found. Search iTunes for '.$orig, 'icon.png' );
+    $wf->result('itunes', $query, 'No Suggestions', 'No search suggestions found. Search iTunes for '.$orig, 'icon.png' );
 }
 
 echo $wf->toxml();

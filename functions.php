@@ -13,6 +13,8 @@ function getResultName($entity, $result)
             return getAlbumResultName($result);
         case 'musicArtist':
             return getArtistResultName($result);
+        case 'musicTrack':
+            return getTrackResultName($result);
         case 'software':
             return getSoftwareResultName($result);
         case 'macSoftware':
@@ -40,6 +42,16 @@ function getAlbumResultName($result)
 function getArtistResultName($result)
 {
     return $result['artistName'];
+}
+
+/**
+ * @param array $result
+ *
+ * @return string
+ */
+function getTrackResultName($result)
+{
+    return sprintf('%s - %s', $result['artistName'], $result['trackName']);
 }
 
 /**
