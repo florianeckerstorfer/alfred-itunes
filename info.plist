@@ -8,6 +8,63 @@
 	<string>Internet</string>
 	<key>connections</key>
 	<dict>
+		<key>33CBB0ED-6447-468B-99D6-F799C355406B</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>CC66E8B3-D27A-4399-881C-2386B5B1DDD2</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>D698F2F4-5478-4A04-929F-F631AA46054C</string>
+				<key>modifiers</key>
+				<integer>1048576</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>53D2CEFC-201F-470D-94C1-D7693DC4B428</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>CC66E8B3-D27A-4399-881C-2386B5B1DDD2</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>D698F2F4-5478-4A04-929F-F631AA46054C</string>
+				<key>modifiers</key>
+				<integer>1048576</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>B819A2F5-0143-49C9-B9EC-09BA2D686343</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>CC66E8B3-D27A-4399-881C-2386B5B1DDD2</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>D698F2F4-5478-4A04-929F-F631AA46054C</string>
+				<key>modifiers</key>
+				<integer>1048576</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
 		<key>F5C19792-DEB5-42A2-8B24-53F7EEF44277</key>
 		<array>
 			<dict>
@@ -58,44 +115,13 @@
 				<key>runningsubtext</key>
 				<string>Retrieving search suggestions ...</string>
 				<key>script</key>
-				<string>require_once('workflows.php');
-$wf = new Workflows();
-
-$orig = "{query}";
-$json = $wf-&gt;request("https://itunes.apple.com/search?at=11lSjE&amp;limit=10&amp;entity=album&amp;term=".urlencode($orig));
-$json = json_decode($json, true);
-$int = 1;
-
-
-
-foreach($json['results'] as $album) {
-    $name = sprintf('%s - %s', $album['artistName'], $album['collectionName']);
-    $url  = $album['collectionViewUrl'];
-    if (!preg_match('/geo\.itunes\.apple\.com/', $url)) {
-        $url = str_replace('itunes.apple.com', 'geo.itunes.apple.com', $url);
-    }
-    $image = 'icon.png';
-    if (isset($album['artworkUrl60'])) {
-        $image = 'image-cache/'.md5($album['artworkUrl60']);
-        if (!file_exists($image)) {
-            file_put_contents($image, file_get_contents($album['artworkUrl60']));
-        }
-    }
-    $wf-&gt;result($int.'.'.time(), $url, $name, 'Open page for '.$name, $image);
-    $int++;
-}
-
-$results = $wf-&gt;results();
-if (count($results) === 0) {
-    $wf-&gt;result('itunes', $orig, 'No Suggestions', 'No search suggestions found. Search iTunes for '.$orig, 'icon.png' );
-}
-
-echo $wf-&gt;toxml();
-</string>
+				<string>$query  = '{query}';
+$entity = 'album';
+require_once 'search.php';</string>
 				<key>subtext</key>
-				<string>Search iTunes Store with Suggestions</string>
+				<string>Search iTunes Store for Albums with Suggestions</string>
 				<key>title</key>
-				<string>Search iTunes Store</string>
+				<string>Search iTunes Store for Albums</string>
 				<key>type</key>
 				<integer>1</integer>
 				<key>withspace</key>
@@ -105,6 +131,62 @@ echo $wf-&gt;toxml();
 			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
 			<string>F5C19792-DEB5-42A2-8B24-53F7EEF44277</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>escaping</key>
+				<integer>100</integer>
+				<key>keyword</key>
+				<string>itunes</string>
+				<key>queuedelaycustom</key>
+				<integer>1</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>2</integer>
+				<key>queuemode</key>
+				<integer>2</integer>
+				<key>runningsubtext</key>
+				<string>Retrieving search suggestions ...</string>
+				<key>script</key>
+				<string>$query  = '{query}';
+$entity = 'musicArtist';
+require_once 'search.php';</string>
+				<key>subtext</key>
+				<string>Search iTunes Store for Artists with Suggestions</string>
+				<key>title</key>
+				<string>Search iTunes Store for Artists</string>
+				<key>type</key>
+				<integer>1</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>B819A2F5-0143-49C9-B9EC-09BA2D686343</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>plusspaces</key>
+				<false/>
+				<key>url</key>
+				<string>{query}</string>
+				<key>utf8</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.openurl</string>
+			<key>uid</key>
+			<string>CC66E8B3-D27A-4399-881C-2386B5B1DDD2</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
@@ -126,17 +208,78 @@ echo $wf-&gt;toxml();
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>plusspaces</key>
-				<false/>
-				<key>url</key>
-				<string>{query}</string>
-				<key>utf8</key>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>escaping</key>
+				<integer>100</integer>
+				<key>keyword</key>
+				<string>appstore</string>
+				<key>queuedelaycustom</key>
+				<integer>1</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>2</integer>
+				<key>queuemode</key>
+				<integer>2</integer>
+				<key>runningsubtext</key>
+				<string>Retrieving search suggestions ...</string>
+				<key>script</key>
+				<string>$query  = '{query}';
+$entity = 'software';
+require_once 'search.php';</string>
+				<key>subtext</key>
+				<string>Search App Store with Suggestions</string>
+				<key>title</key>
+				<string>Search App Store</string>
+				<key>type</key>
+				<integer>1</integer>
+				<key>withspace</key>
 				<true/>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.action.openurl</string>
+			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
-			<string>CC66E8B3-D27A-4399-881C-2386B5B1DDD2</string>
+			<string>33CBB0ED-6447-468B-99D6-F799C355406B</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>escaping</key>
+				<integer>100</integer>
+				<key>keyword</key>
+				<string>appstore</string>
+				<key>queuedelaycustom</key>
+				<integer>1</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>2</integer>
+				<key>queuemode</key>
+				<integer>2</integer>
+				<key>runningsubtext</key>
+				<string>Retrieving search suggestions ...</string>
+				<key>script</key>
+				<string>$query  = '{query}';
+$entity = 'macSoftware';
+require_once 'search.php';</string>
+				<key>subtext</key>
+				<string>Search Mac App Store with Suggestions</string>
+				<key>title</key>
+				<string>Search Mac App Store</string>
+				<key>type</key>
+				<integer>1</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>53D2CEFC-201F-470D-94C1-D7693DC4B428</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
@@ -145,20 +288,35 @@ echo $wf-&gt;toxml();
 	<string></string>
 	<key>uidata</key>
 	<dict>
+		<key>33CBB0ED-6447-468B-99D6-F799C355406B</key>
+		<dict>
+			<key>ypos</key>
+			<real>240</real>
+		</dict>
+		<key>53D2CEFC-201F-470D-94C1-D7693DC4B428</key>
+		<dict>
+			<key>ypos</key>
+			<real>350</real>
+		</dict>
+		<key>B819A2F5-0143-49C9-B9EC-09BA2D686343</key>
+		<dict>
+			<key>ypos</key>
+			<real>130</real>
+		</dict>
 		<key>CC66E8B3-D27A-4399-881C-2386B5B1DDD2</key>
 		<dict>
 			<key>ypos</key>
-			<real>150</real>
+			<real>190</real>
 		</dict>
 		<key>D698F2F4-5478-4A04-929F-F631AA46054C</key>
 		<dict>
 			<key>ypos</key>
-			<real>10</real>
+			<real>190</real>
 		</dict>
 		<key>F5C19792-DEB5-42A2-8B24-53F7EEF44277</key>
 		<dict>
 			<key>ypos</key>
-			<real>10</real>
+			<real>20</real>
 		</dict>
 	</dict>
 	<key>webaddress</key>
