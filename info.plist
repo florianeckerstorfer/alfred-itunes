@@ -118,7 +118,7 @@
 	<key>createdby</key>
 	<string>Florian Eckerstorfer</string>
 	<key>description</key>
-	<string>Search iTunes Store</string>
+	<string>Search iTunes and App Store</string>
 	<key>disabled</key>
 	<false/>
 	<key>name</key>
