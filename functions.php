@@ -31,7 +31,12 @@ function getResultName($entity, $result)
  */
 function getAlbumResultName($result)
 {
-    return sprintf('%s - %s', $result['artistName'], $result['collectionName']);
+    return sprintf(
+        '%s - %s (%s)',
+        $result['artistName'],
+        $result['collectionName'],
+        date('Y', strtotime($result['releaseDate']))
+    );
 }
 
 /**
@@ -51,7 +56,12 @@ function getArtistResultName($result)
  */
 function getTrackResultName($result)
 {
-    return sprintf('%s - %s', $result['artistName'], $result['trackName']);
+    return sprintf(
+        '%s - %s (%d)',
+        $result['artistName'],
+        $result['trackName'],
+        date('Y', strtotime($result['releaseDate']))
+    );
 }
 
 /**
